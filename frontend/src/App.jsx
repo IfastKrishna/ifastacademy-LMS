@@ -3,7 +3,7 @@ import { Button, SideBar } from "./components";
 function App() {
   return (
     <>
-      <SideBar></SideBar>
+      <SideBar />
     </>
   );
 }

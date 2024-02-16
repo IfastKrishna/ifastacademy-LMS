@@ -1,13 +1,18 @@
 import React from "react";
-
-function Menu({ children, className }) {
+import { NavLink } from "react-router-dom";
+function Menu({ children, className, to }) {
   return (
-    <li
-      className={`w-full py-2 px-4 hover:bg-black/10 rounded duration-200 ${className}`}
-    >
-      <a href="#" className="flex items-center text-xl">
+    <li>
+      <NavLink
+        to={to}
+        className={({ isActive }) =>
+          `flex items-center text-xl w-full py-2 px-4 rounded duration-200 ${
+            isActive ? "bg-black/10" : "hover:bg-black/10"
+          } ${className}`
+        }
+      >
         {children}
-      </a>
+      </NavLink>
     </li>
   );
 }
