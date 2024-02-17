@@ -1,36 +1,83 @@
 import React from "react";
 import Logo from "../Logo";
-import { FaUser } from "react-icons/fa";
-import { FaChalkboardTeacher } from "react-icons/fa";
-import { MdSpaceDashboard } from "react-icons/md";
+import { FaUser, FaChalkboardTeacher } from "react-icons/fa";
+import { Outlet } from "react-router-dom";
+import {
+  MdSpaceDashboard,
+  MdKeyboardArrowDown,
+  MdKeyboardArrowUp,
+  MdClass,
+  MdOutlineMenu,
+} from "react-icons/md";
+import { Link } from "react-router-dom";
 import Menu from "./Menu";
 import MenuWrapper from "./MenuWrapper";
-import { Link } from "react-router-dom";
+import SubMenu from "./SubMenu";
+import FlexBtween from "../FlexBetween/FlexBtween";
 
 function SideBar() {
   return (
-    <div className=" w-3/4 h-screen md:w-80 bg-gray-100 px-5">
-      <section className="sidebar flex flex-col gap-y-3">
-        <Link to="">
-          <Logo />
-        </Link>
-        <div className="w-full h-full flex">
-          <MenuWrapper className={"flex flex-col gap-y-1"}>
-            <Menu to="">
-              <MdSpaceDashboard className="mr-3" /> Dashbord
-            </Menu>
-            <Menu to="/course">
-              <MdSpaceDashboard className="mr-3" /> Course
-            </Menu>
-            <Menu to="/instuctors">
-              <FaChalkboardTeacher className="mr-3" /> Instuctors
-            </Menu>
-            <Menu to="students">
-              <FaUser className="mr-3" /> Students
-            </Menu>
-          </MenuWrapper>
-        </div>
-      </section>
+    <div className="flex flex-col lg:flex-row">
+      {/* LARGE SCRREN FOR THIS SIDEBAR */}
+      <div className="relative hidden lg:block h-screen lg:w-1/4 bg-gray-100 px-5">
+        <section className="sidebar flex flex-col gap-y-3">
+          <Link to="">
+            <Logo />
+          </Link>
+          <div className="w-full h-full flex">
+            <MenuWrapper className="flex flex-col gap-y-1">
+              <Menu to="/">
+                <MdSpaceDashboard className="mr-3" /> Dashboard
+              </Menu>
+              <Menu to="/course">
+                <MdSpaceDashboard className="mr-3" /> Course
+              </Menu>
+              <Menu to="/instructors">
+                <FaChalkboardTeacher className="mr-3" /> Instructors
+              </Menu>
+              <Menu to="/students">
+                <FaUser className="mr-3" /> Students
+              </Menu>
+              <SubMenu
+                menuName={
+                  <div className="flex items-center">
+                    <MdClass className="mr-3" />
+                    Sections
+                  </div>
+                }
+                isActiveIcons={<MdKeyboardArrowDown />}
+                isDeActiveIcons={<MdKeyboardArrowUp />}
+              >
+                <Menu to="/sections/add">
+                  <MdSpaceDashboard className="mr-3" /> Add
+                </Menu>
+                <Menu to="/sections/close">
+                  <FaChalkboardTeacher className="mr-3" /> Close
+                </Menu>
+              </SubMenu>
+            </MenuWrapper>
+          </div>
+        </section>
+      </div>
+      {/* MOBILE DIVE FOR NAVBAR */}
+      <div className="block lg:hidden h-14 bg-gray-100 border-b border-gray-200 w-full">
+        <FlexBtween className="h-full px-5">
+          <div className="flex items-center">
+            <MdOutlineMenu fontSize={30} className="mr-3" />
+            <Link to="">
+              <Logo />
+            </Link>
+          </div>
+          <img
+            src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?q=80&w=1780&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            className=" w-10 h-10 rounded-full object-cover border-2 border-gray-300 hover:cursor-pointer"
+          />
+        </FlexBtween>
+      </div>
+      {/* Page */}
+      <div className="flex-1 px-5 py-5">
+        <Outlet />
+      </div>
     </div>
   );
 }

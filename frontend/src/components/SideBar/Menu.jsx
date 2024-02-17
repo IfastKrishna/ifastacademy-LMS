@@ -1,5 +1,7 @@
+// Menu.js
 import React from "react";
 import { NavLink } from "react-router-dom";
+
 function Menu({ children, className, to }) {
   return (
     <li>

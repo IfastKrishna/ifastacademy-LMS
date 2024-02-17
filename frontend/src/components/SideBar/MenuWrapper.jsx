@@ -1,3 +1,4 @@
+// MenuWrapper.js
 import React from "react";
 
 function MenuWrapper({ children, className }) {

@@ -1,4 +1,4 @@
-import { Button, SideBar } from "./components";
+import { SideBar } from "./components";
 
 function App() {
   return (

@@ -5,12 +5,18 @@ import "./index.css";
 import store from "./store/store.js";
 import { Provider } from "react-redux";
 import { createBrowserRouter, RouterProvider, Route } from "react-router-dom";
+import { PageNotFound } from "./pages/index.js";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    children: [],
+    children: [
+      {
+        path: "*",
+        element: <PageNotFound />,
+      },
+    ],
   },
 ]);
 ReactDOM.createRoot(document.getElementById("root")).render(
