@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useMemo } from "react";
+import { useMediaQuery } from "react-responsive";
 import Logo from "../Logo";
 import { FaUser, FaChalkboardTeacher } from "react-icons/fa";
 import { Outlet } from "react-router-dom";
@@ -8,6 +9,7 @@ import {
   MdKeyboardArrowUp,
   MdClass,
   MdOutlineMenu,
+  MdOutlineClose,
 } from "react-icons/md";
 import { Link } from "react-router-dom";
 import Menu from "./Menu";
@@ -16,14 +18,42 @@ import SubMenu from "./SubMenu";
 import FlexBtween from "../FlexBetween/FlexBtween";
 
 function SideBar() {
+  const isSmallDivise = useMediaQuery({ query: "(max-width:1024px)" });
+  const [sideBarOpen, setSideBarOpen] = useState(true);
+
+  useMemo(() => {
+    if (!isSmallDivise) {
+      setSideBarOpen(true);
+    }
+  }, [isSmallDivise]);
+
+  const handlerToggleSideBar = () => {
+    setSideBarOpen(!sideBarOpen);
+  };
+
   return (
-    <div className="flex flex-col lg:flex-row">
-      {/* LARGE SCRREN FOR THIS SIDEBAR */}
-      <div className="relative hidden lg:block h-screen lg:w-1/4 bg-gray-100 px-5">
-        <section className="sidebar flex flex-col gap-y-3">
-          <Link to="">
-            <Logo />
-          </Link>
+    <div className="relative flex flex-col lg:flex-row">
+      {/* LARGE SCREEN FOR THIS SIDEBAR */}
+      <div
+        className={`bg-gray-100 w-10/12 h-screen absolute top-0 left-0 lg:relative lg:w-72 px-5 border-r border-gray-300 ${
+          sideBarOpen
+            ? "transition-transform duration-300 transform translate-x-0"
+            : "transition-transform duration-300 transform -translate-x-full"
+        } `}
+      >
+        <section className={`sidebar flex flex-col gap-y-3 `}>
+          <FlexBtween className={" bg-black/10 rounded-md py-2 px-4 mt-3"}>
+            <Link to="">
+              <Logo />
+            </Link>
+            {isSmallDivise ? (
+              <MdOutlineClose
+                fontSize={32}
+                onClick={handlerToggleSideBar}
+                className=" cursor-pointer"
+              />
+            ) : null}
+          </FlexBtween>
           <div className="w-full h-full flex">
             <MenuWrapper className="flex flex-col gap-y-1">
               <Menu to="/">
@@ -59,11 +89,16 @@ function SideBar() {
           </div>
         </section>
       </div>
-      {/* MOBILE DIVE FOR NAVBAR */}
+
+      {/* MOBILE DIVISE FOR NAVBAR */}
       <div className="block lg:hidden h-14 bg-gray-100 border-b border-gray-200 w-full">
         <FlexBtween className="h-full px-5">
           <div className="flex items-center">
-            <MdOutlineMenu fontSize={30} className="mr-3" />
+            <MdOutlineMenu
+              fontSize={30}
+              className="mr-3 cursor-pointer"
+              onClick={handlerToggleSideBar}
+            />
             <Link to="">
               <Logo />
             </Link>
@@ -74,6 +109,7 @@ function SideBar() {
           />
         </FlexBtween>
       </div>
+
       {/* Page */}
       <div className="flex-1 px-5 py-5">
         <Outlet />
