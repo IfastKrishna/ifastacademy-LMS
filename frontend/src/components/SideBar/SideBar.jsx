@@ -42,7 +42,7 @@ function SideBar() {
         } `}
       >
         <section className={`sidebar flex flex-col gap-y-3 `}>
-          <FlexBtween className={" bg-black/10 rounded-md py-2 px-4 mt-3"}>
+          <FlexBtween className={"border-b border-b-gray-400 py-2 px-4 mt-3"}>
             <Link to="">
               <Logo />
             </Link>

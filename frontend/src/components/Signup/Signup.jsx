@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { Input, Button, Select } from "../index.js";
+import { Input, Button } from "../index.js";
 import { useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
 function Signup() {
@@ -50,6 +50,7 @@ function Signup() {
             placeholder="Enter your phone number"
             {...register("phoneNo", {
               required: true,
+              pattern: /^\d{10}$/,
             })}
           />
           {errors.phoneNo && (
@@ -82,11 +83,7 @@ function Signup() {
             <span className="text-red-500">{errors.confpassword.message}</span>
           )}
         </div>
-        <Button
-          type="submit"
-          className="w-full disabled:cursor-not-allowed"
-          disabled={!isValid}
-        >
+        <Button type="submit" className="w-full disabled:cursor-not-allowed">
           Create Account
         </Button>
       </form>

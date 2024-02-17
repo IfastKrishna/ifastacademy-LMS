@@ -8,7 +8,7 @@ import Input from "./Input/Input";
 import Textarea from "./Textarea/Textarea";
 import Select from "./Select/Select";
 import Logo from "./Logo";
-import Sppiner from "./Sppiner/Sppiner";
+import Spinner from "./Sppiner/Sppiner";
 
 export {
   Button,
@@ -21,5 +21,5 @@ export {
   Select,
   Input,
   Logo,
-  Sppiner,
+  Spinner,
 };

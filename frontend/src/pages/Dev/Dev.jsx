@@ -1,13 +1,16 @@
 import React, { useState } from "react";
-import { Signup } from "../../components/index.js";
-import { useForm } from "react-hook-form";
+import { Button, Signup } from "../../components/index.js";
+import toast from "react-hot-toast";
 
 function Dev() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const notify = () =>
+    toast.success("Register is successfully", {
+      style: {
+        borderRadius: "10px",
+        background: "#333",
+        color: "#fff",
+      },
+    });
 
   return (
     <div className="w-full h-full">

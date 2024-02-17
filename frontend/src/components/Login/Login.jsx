@@ -1,11 +1,8 @@
 import React from "react";
+import { Input, Button, Spinner } from "../../components";
 
 function Login() {
-  return (
-    <div className="w-full max-w-xl">
-      <h1 className="text-2xl font-bold">Login</h1>
-    </div>
-  );
+  return <div className="w-full max-w-xl"></div>;
 }
 
 export default Login;
