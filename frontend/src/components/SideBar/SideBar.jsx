@@ -19,7 +19,7 @@ import FlexBtween from "../FlexBetween/FlexBtween";
 
 function SideBar() {
   const isSmallDivise = useMediaQuery({ query: "(max-width:1024px)" });
-  const [sideBarOpen, setSideBarOpen] = useState(true);
+  const [sideBarOpen, setSideBarOpen] = useState(false);
 
   useMemo(() => {
     if (!isSmallDivise) {

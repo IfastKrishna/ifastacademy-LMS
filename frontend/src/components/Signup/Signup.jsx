@@ -1,9 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Input, Button, Select } from "../index.js";
 import { useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
-
 function Signup() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -11,7 +10,7 @@ function Signup() {
     register,
     handleSubmit,
     watch,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm();
   const password = React.useRef({});
   password.current = watch("password", "");
@@ -83,7 +82,11 @@ function Signup() {
             <span className="text-red-500">{errors.confpassword.message}</span>
           )}
         </div>
-        <Button type="submit" className="w-full">
+        <Button
+          type="submit"
+          className="w-full disabled:cursor-not-allowed"
+          disabled={!isValid}
+        >
           Create Account
         </Button>
       </form>
