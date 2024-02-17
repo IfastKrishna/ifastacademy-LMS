@@ -35,7 +35,7 @@ function SideBar() {
     <div className="relative flex flex-col lg:flex-row">
       {/* LARGE SCREEN FOR THIS SIDEBAR */}
       <div
-        className={`bg-gray-100 w-10/12 h-screen absolute top-0 left-0 lg:relative lg:w-72 px-5 border-r border-gray-300 ${
+        className={`bg-gray-100 w-10/12 h-screen absolute top-0 left-0 lg:relative lg:w-72 px-5 border-r border-gray-200 ${
           sideBarOpen
             ? "transition-transform duration-300 transform translate-x-0"
             : "transition-transform duration-300 transform -translate-x-full"
@@ -46,6 +46,7 @@ function SideBar() {
             <Link to="">
               <Logo />
             </Link>
+
             {isSmallDivise ? (
               <MdOutlineClose
                 fontSize={32}
