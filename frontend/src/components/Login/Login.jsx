@@ -1,8 +1,98 @@
-import React from "react";
+import React, { useState } from "react";
 import { Input, Button, Spinner } from "../../components";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import toast from "react-hot-toast";
 
 function Login() {
-  return <div className="w-full max-w-xl"></div>;
+  const [loading, setLoading] = useState(false);
+  const [passwordShow, setPasswordShow] = useState(false);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const togglePasswordShow = () => {
+    setPasswordShow(!passwordShow);
+  };
+
+  const login = async (values) => {
+    console.log(values);
+  };
+
+  return (
+    <div className="w-full max-w-xl mx-auto">
+      <form onSubmit={handleSubmit(login)}>
+        <div className="w-full mb-3">
+          <Input
+            label="Username"
+            placeholder="Enter your username"
+            className="py-3 pr-10"
+            {...register("username", {
+              required: "Username is required.",
+            })}
+          />
+          {errors.username && (
+            <span className=" text-red-500 text-sm">
+              {errors.username.message}
+            </span>
+          )}
+        </div>
+        <div className="w-full mb-3">
+          <Input
+            label="Email"
+            placeholder="Enter your email address"
+            className="py-3"
+            {...register("email", { required: "Email is required." })}
+          />
+          {errors.email && (
+            <span className=" text-red-500 text-sm">
+              {errors.email.message}
+            </span>
+          )}
+        </div>
+        <div className="w-full mb-3">
+          <div className="w-full mb-3 flex items-center justify-between pr-2 border text-gray-500 border-gray-300 hover:border-gray-400 rounded-md">
+            <input
+              placeholder="Enter your password"
+              type={passwordShow ? "text" : "password"}
+              className="py-3 outline-none pl-2 w-full rounded-md"
+              {...register("password", { required: "Passwrod is required." })}
+            />
+            {passwordShow ? (
+              <FaRegEye
+                onClick={togglePasswordShow}
+                className="cursor-pointer text-gray-500 transition-colors duration-300 hover:text-gray-700"
+                fontSize={20}
+              />
+            ) : (
+              <FaRegEyeSlash
+                onClick={togglePasswordShow}
+                className="cursor-pointer text-gray-500 transition-colors duration-300 hover:text-gray-700"
+                fontSize={20}
+              />
+            )}
+          </div>
+          {errors.password && (
+            <span className=" text-red-500 text-sm">
+              {errors.password.message}
+            </span>
+          )}
+        </div>
+
+        <div className="w-full mb-3">
+          <Button type="submit" className="w-full py-3">
+            {loading ? <Spinner /> : "Login"}
+          </Button>
+        </div>
+      </form>
+    </div>
+  );
 }
 
 export default Login;

@@ -37,7 +37,10 @@ function Signup() {
             label="Email"
             type="email"
             placeholder="Enter your email"
-            {...register("email", { required: true })}
+            {...register("email", {
+              required: true,
+              pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+            })}
           />
           {errors.email && (
             <span className="text-red-500">Email is Required</span>

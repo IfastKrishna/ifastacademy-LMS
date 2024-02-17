@@ -42,7 +42,7 @@ function SideBar() {
         } `}
       >
         <section className={`sidebar flex flex-col gap-y-3 `}>
-          <FlexBtween className={"border-b border-b-gray-400 py-2 px-4 mt-3"}>
+          <FlexBtween className={"border-b border-b-gray-300 py-2 px-4 mt-3"}>
             <Link to="">
               <Logo />
             </Link>
@@ -92,7 +92,7 @@ function SideBar() {
       </div>
 
       {/* MOBILE DIVISE FOR NAVBAR */}
-      <div className="block lg:hidden h-14 bg-gray-100 border-b border-gray-200 w-full">
+      <div className="block lg:hidden h-14 px-5 bg-gray-100 border-b border-gray-200 w-full">
         <FlexBtween className="h-full px-5">
           <div className="flex items-center">
             <MdOutlineMenu

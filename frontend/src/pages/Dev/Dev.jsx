@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Signup } from "../../components/index.js";
+import { Button, Login, Signup } from "../../components/index.js";
 import toast from "react-hot-toast";
 
 function Dev() {
@@ -14,7 +14,8 @@ function Dev() {
 
   return (
     <div className="w-full h-full">
-      <Signup />
+      {/* <Signup /> */}
+      <Login />
     </div>
   );
 }
