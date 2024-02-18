@@ -35,7 +35,7 @@ function SideBar() {
     <div className="relative flex flex-col lg:flex-row">
       {/* LARGE SCREEN FOR THIS SIDEBAR */}
       <div
-        className={`bg-gray-100 w-10/12 h-screen absolute top-0 left-0 lg:relative lg:w-72 px-5 border-r border-gray-200 ${
+        className={`bg-gray-100 w-10/12 h-screen fixed z-20 top-0 left-0 lg:relative lg:w-72 px-5 border-r border-gray-200 ${
           sideBarOpen
             ? "transition-transform duration-300 transform translate-x-0"
             : "transition-transform duration-300 transform -translate-x-full"
@@ -92,7 +92,7 @@ function SideBar() {
       </div>
 
       {/* MOBILE DIVISE FOR NAVBAR */}
-      <div className="block lg:hidden h-14 px-5 bg-gray-100 border-b border-gray-200 w-full">
+      <div className="block fixed z-10 top-0 left-0 right-0 lg:hidden h-14 px-5 bg-gray-100 border-b border-gray-200 w-full">
         <FlexBtween className="h-full px-5">
           <div className="flex items-center">
             <MdOutlineMenu
@@ -112,7 +112,7 @@ function SideBar() {
       </div>
 
       {/* Page */}
-      <div className="flex-1 px-5 py-5">
+      <div className="flex-1">
         <Outlet />
       </div>
     </div>

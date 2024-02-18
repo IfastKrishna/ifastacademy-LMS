@@ -26,13 +26,13 @@ function Login() {
   };
 
   return (
-    <div className="w-full max-w-xl mx-auto">
+    <div className="w-full max-w-xl mx-auto px-5">
       <form onSubmit={handleSubmit(login)}>
         <div className="w-full mb-3">
           <Input
             label="Username"
             placeholder="Enter your username"
-            className="py-3 pr-10"
+            className="pr-10"
             {...register("username", {
               required: "Username is required.",
             })}
@@ -47,7 +47,6 @@ function Login() {
           <Input
             label="Email"
             placeholder="Enter your email address"
-            className="py-3"
             {...register("email", { required: "Email is required." })}
           />
           {errors.email && (
@@ -57,11 +56,12 @@ function Login() {
           )}
         </div>
         <div className="w-full mb-3">
+          <label className=" font-medium text-gray-500">Password</label>
           <div className="w-full mb-3 flex items-center justify-between pr-2 border text-gray-500 border-gray-300 hover:border-gray-400 rounded-md">
             <input
               placeholder="Enter your password"
               type={passwordShow ? "text" : "password"}
-              className="py-3 outline-none pl-2 w-full rounded-md"
+              className="py-2 outline-none pl-2 w-full rounded-md"
               {...register("password", { required: "Passwrod is required." })}
             />
             {passwordShow ? (
@@ -86,7 +86,7 @@ function Login() {
         </div>
 
         <div className="w-full mb-3">
-          <Button type="submit" className="w-full py-3">
+          <Button type="submit" className="w-full">
             {loading ? <Spinner /> : "Login"}
           </Button>
         </div>
